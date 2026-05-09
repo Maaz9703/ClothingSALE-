@@ -45,7 +45,7 @@ export default function AdminUsers() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 32, flexWrap: 'wrap', gap: 12 }}>
         <div>
           <h1 style={{ fontSize: 28, fontWeight: 800, color: '#0f172a', letterSpacing: '-0.03em' }}>Customers</h1>
-          <p style={{ fontSize: 14, color: '#64748b', marginTop: 4 }}>{users.length} registered users · ${totalRevenue.toLocaleString()} total revenue</p>
+          <p style={{ fontSize: 14, color: '#64748b', marginTop: 4 }}>{users.length} registered users · Rs {totalRevenue.toLocaleString()} total revenue</p>
         </div>
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name or email…"
           style={{ padding: '10px 16px', border: '1.5px solid #e2e8f0', outline: 'none', fontSize: 14, width: 280, color: '#0f172a', background: '#fff', boxSizing: 'border-box' }}
@@ -57,8 +57,8 @@ export default function AdminUsers() {
         {[
           { label: 'Total Customers', value: users.length },
           { label: 'Admins', value: users.filter(u => u.role === 'admin').length },
-          { label: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}` },
-          { label: 'Avg. Spent', value: `$${users.length ? Math.round(totalRevenue / users.filter(u => u.role === 'user').length || 0) : 0}` },
+          { label: 'Total Revenue', value: `Rs ${totalRevenue.toLocaleString()}` },
+          { label: 'Avg. Spent', value: `Rs ${users.length ? Math.round(totalRevenue / users.filter(u => u.role === 'user').length || 0) : 0}` },
         ].map(c => (
           <div key={c.label} style={{ background: '#fff', border: '1px solid #e2e8f0', padding: '18px 20px' }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>{c.label}</div>
@@ -105,7 +105,7 @@ export default function AdminUsers() {
                       </span>
                     </td>
                     <td style={{ padding: '16px 20px', fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{user.orders}</td>
-                    <td style={{ padding: '16px 20px', fontSize: 14, fontWeight: 800, color: '#0f172a' }}>${(user.totalSpent || 0).toLocaleString()}</td>
+                    <td style={{ padding: '16px 20px', fontSize: 14, fontWeight: 800, color: '#0f172a' }}>Rs {(user.totalSpent || 0).toLocaleString()}</td>
                     <td style={{ padding: '16px 20px', fontSize: 13, color: '#64748b', whiteSpace: 'nowrap' }}>{new Date(user.createdAt).toLocaleDateString()}</td>
                     <td style={{ padding: '16px 20px' }}>
                       {user.role !== 'admin' && (

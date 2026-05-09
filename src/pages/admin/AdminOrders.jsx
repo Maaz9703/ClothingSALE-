@@ -85,7 +85,7 @@ export default function AdminOrders() {
                         </button>
                       </td>
                       <td style={{ padding: '16px 20px', fontSize: 13, color: '#64748b' }}>{order.email}</td>
-                      <td style={{ padding: '16px 20px', fontSize: 14, fontWeight: 800, color: '#0f172a' }}>${order.total}</td>
+                      <td style={{ padding: '16px 20px', fontSize: 14, fontWeight: 800, color: '#0f172a' }}>Rs {order.total}</td>
                       <td style={{ padding: '16px 20px' }}>
                         <select value={order.status} onChange={e => changeStatus(order._id, e.target.value)}
                           style={{ padding: '5px 10px', border: `1.5px solid ${STATUS_COLOR[order.status]}`, fontSize: 12, fontWeight: 700, color: STATUS_COLOR[order.status], background: STATUS_COLOR[order.status] + '15', cursor: 'pointer', outline: 'none' }}
@@ -111,9 +111,9 @@ export default function AdminOrders() {
                               {(order.items || []).map((item, j) => (
                                 <tr key={j}>
                                   <td style={{ padding: '4px 8px', fontSize: 13, color: '#0f172a' }}>{item.name}</td>
-                                  <td style={{ padding: '4px 8px', fontSize: 13, color: '#64748b' }}>${item.price}</td>
-                                  <td style={{ padding: '4px 8px', fontSize: 13, color: '#64748b' }}>{item.qty}</td>
-                                  <td style={{ padding: '4px 8px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>${item.price * item.qty}</td>
+                                  <td style={{ padding: '4px 8px', fontSize: 13, color: '#64748b' }}>Rs {item.price}</td>
+                                  <td style={{ padding: '4px 8px', fontSize: 13, color: '#64748b', textAlign: 'center' }}>x{item.qty}</td>
+                                  <td style={{ padding: '4px 8px', fontSize: 13, fontWeight: 700, color: '#0f172a' }}>Rs {item.price * item.qty}</td>
                                 </tr>
                               ))}
                             </tbody>

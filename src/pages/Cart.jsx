@@ -127,7 +127,7 @@ const Cart = ({ cartItems = [], setCartItems, user }) => {
                   <p style={{ fontSize: 13, color: '#64748b' }}>{item.category}</p>
                 </div>
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#0f172a' }}>
-                  ${item.price}
+                  Rs {item.price}
                 </div>
                 <button
                   onClick={() => removeItem(index)}
@@ -172,7 +172,7 @@ const Cart = ({ cartItems = [], setCartItems, user }) => {
 
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16, fontSize: 15, color: '#64748b' }}>
                 <span>Subtotal</span>
-                <span style={{ fontWeight: 600, color: '#0f172a' }}>${total}</span>
+                <span style={{ fontWeight: 600, color: '#0f172a' }}>Rs {total}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24, fontSize: 15, color: '#64748b' }}>
                 <span>Shipping</span>
@@ -180,7 +180,7 @@ const Cart = ({ cartItems = [], setCartItems, user }) => {
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24, fontSize: 18, fontWeight: 800, color: '#0f172a', borderTop: '1px solid #e2e8f0', paddingTop: 16 }}>
                 <span>Total</span>
-                <span>${total}</span>
+                <span>Rs {total}</span>
               </div>
 
               <button 

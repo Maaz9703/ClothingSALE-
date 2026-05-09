@@ -96,7 +96,7 @@ export default function AdminProducts() {
                 <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', marginTop: 4, marginBottom: 4 }}>{p.name}</h3>
                 <p style={{ fontSize: 13, color: '#64748b', marginBottom: 14, lineHeight: 1.4, WebkitLineClamp: 2, overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical' }}>{p.description}</p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: 18, fontWeight: 800, color: '#0f172a' }}>${p.price}</span>
+                  <span style={{ fontSize: 18, fontWeight: 800, color: '#0f172a' }}>Rs {p.price}</span>
                   <div style={{ display: 'flex', gap: 6 }}>
                     <button onClick={() => openEdit(p)} style={{ padding: '7px 12px', background: '#f8fafc', border: '1px solid #e2e8f0', cursor: 'pointer', color: '#475569', display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, fontWeight: 600 }}>
                       <Pencil size={13} /> Edit
@@ -128,7 +128,7 @@ export default function AdminProducts() {
                 <button onClick={() => setModal(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}><X size={20} /></button>
               </div>
               <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {[['Name', 'name', 'text'], ['Price ($)', 'price', 'number'], ['Image URL', 'imageUrl', 'url']].map(([label, key, type]) => (
+                {[['Name', 'name', 'text'], ['Price (Rs)', 'price', 'number'], ['Image URL', 'imageUrl', 'url']].map(([label, key, type]) => (
                   <div key={key}>
                     <label style={{ display: 'block', fontSize: 11, fontWeight: 700, color: '#0f172a', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{label}</label>
                     <input type={type} value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} style={inputStyle} />

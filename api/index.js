@@ -14,24 +14,24 @@ app.use(express.json());
 
 // ── Seed Data ──────────────────────────────────────────────────────────────────
 const SEED_PRODUCTS = [
-  { name: 'Minimalist Winter Coat', price: 299, category: 'Outerwear', imageUrl: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=500', description: 'A sleek and warm minimalist coat for the cold season.' },
-  { name: 'Cashmere Sweater', price: 150, category: 'Knitwear', imageUrl: 'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=500', description: 'Soft cashmere sweater for everyday elegance.' },
-  { name: 'Silk Scarf', price: 45, category: 'Accessories', imageUrl: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500', description: 'Refined silk scarf with subtle geometric patterns.' },
-  { name: 'Linen Blazer', price: 220, category: 'Outerwear', imageUrl: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4491?w=500', description: 'Clean tailored linen blazer, effortlessly versatile.' },
-  { name: 'Merino Turtleneck', price: 120, category: 'Knitwear', imageUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500', description: 'Ultra-soft Merino wool turtleneck with a relaxed fit.' },
-  { name: 'Leather Belt', price: 65, category: 'Accessories', imageUrl: 'https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=500', description: 'Full-grain leather belt with a brushed matte buckle.' },
-  { name: 'Wool Trench Coat', price: 350, category: 'Outerwear', imageUrl: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500', description: 'A classic wool trench for timeless elegance.' },
-  { name: 'Silk Blouse', price: 185, category: 'Tops', imageUrl: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500', description: 'Fluid silk blouse, perfect for day-to-evening dressing.' },
+  { name: 'Minimalist Winter Coat', price: 8500, category: 'Outerwear', imageUrl: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=500', description: 'A sleek and warm minimalist coat for the cold season.' },
+  { name: 'Cashmere Sweater', price: 4200, category: 'Knitwear', imageUrl: 'https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=500', description: 'Soft cashmere sweater for everyday elegance.' },
+  { name: 'Silk Scarf', price: 1500, category: 'Accessories', imageUrl: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500', description: 'Refined silk scarf with subtle geometric patterns.' },
+  { name: 'Linen Blazer', price: 6500, category: 'Outerwear', imageUrl: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4491?w=500', description: 'Clean tailored linen blazer, effortlessly versatile.' },
+  { name: 'Merino Turtleneck', price: 3500, category: 'Knitwear', imageUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500', description: 'Ultra-soft Merino wool turtleneck with a relaxed fit.' },
+  { name: 'Leather Belt', price: 1800, category: 'Accessories', imageUrl: 'https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=500', description: 'Full-grain leather belt with a brushed matte buckle.' },
+  { name: 'Wool Trench Coat', price: 9500, category: 'Outerwear', imageUrl: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500', description: 'A classic wool trench for timeless elegance.' },
+  { name: 'Silk Blouse', price: 5200, category: 'Tops', imageUrl: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500', description: 'Fluid silk blouse, perfect for day-to-evening dressing.' },
 ];
 
 const SEED_ORDERS = [
-  { customer: 'Sophia Chen', email: 'sophia@example.com', phone: '123-456-7890', paymentMethod: 'COD', items: [{ name: 'Cashmere Sweater', price: 150, qty: 1 }, { name: 'Silk Scarf', price: 45, qty: 2 }], total: 240, status: 'Delivered', address: '12 Park Ave, New York, NY' },
-  { customer: 'James Wright', email: 'james@example.com', phone: '123-456-7890', paymentMethod: 'COD', items: [{ name: 'Minimalist Winter Coat', price: 299, qty: 1 }], total: 299, status: 'Shipped', address: '88 Queen St, London, UK' },
-  { customer: 'Amara Diallo', email: 'amara@example.com', phone: '123-456-7890', paymentMethod: 'COD', items: [{ name: 'Linen Blazer', price: 220, qty: 1 }, { name: 'Leather Belt', price: 65, qty: 1 }], total: 285, status: 'Processing', address: '44 Rue de Rivoli, Paris, FR' },
+  { customer: 'Sophia Chen', email: 'sophia@example.com', phone: '123-456-7890', paymentMethod: 'COD', items: [{ name: 'Cashmere Sweater', price: 4200, qty: 1 }, { name: 'Silk Scarf', price: 1500, qty: 2 }], total: 7200, status: 'Delivered', address: '12 Park Ave, New York, NY' },
+  { customer: 'James Wright', email: 'james@example.com', phone: '123-456-7890', paymentMethod: 'COD', items: [{ name: 'Minimalist Winter Coat', price: 8500, qty: 1 }], total: 8500, status: 'Shipped', address: '88 Queen St, London, UK' },
+  { customer: 'Amara Diallo', email: 'amara@example.com', phone: '123-456-7890', paymentMethod: 'COD', items: [{ name: 'Linen Blazer', price: 6500, qty: 1 }, { name: 'Leather Belt', price: 1800, qty: 1 }], total: 8300, status: 'Processing', address: '44 Rue de Rivoli, Paris, FR' },
 ];
 
 const SEED_USERS = [
-  { name: 'Sophia Chen', email: 'sophia@example.com', role: 'user', orders: 4, totalSpent: 840 },
+  { name: 'Sophia Chen', email: 'sophia@example.com', role: 'user', orders: 4, totalSpent: 24000 },
   { name: 'Admin User', email: 'admin@voguevault.com', role: 'admin', orders: 0, totalSpent: 0 },
 ];
 

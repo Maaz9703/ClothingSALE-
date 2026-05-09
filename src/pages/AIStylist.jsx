@@ -11,9 +11,9 @@ const SUGGESTIONS = [
 
 const RESPONSES = {
   default: [
-    { role: 'assistant', text: "Great choice! I'd recommend pairing our **Minimalist Winter Coat** ($299) with the **Cashmere Sweater** ($150) for a clean, refined layered look. Add a **Silk Scarf** ($45) for an elevated accent." },
-    { role: 'assistant', text: "Perfect for the season! I suggest our **Merino Turtleneck** ($120) paired with straight-leg trousers. The monochromatic approach is very on-trend right now." },
-    { role: 'assistant', text: "A timeless pick! I recommend our **Linen Blazer** ($220) over a white tee. Add our **Leather Belt** ($65) to complete the look — effortless and polished." },
+    { role: 'assistant', text: "Great choice! I'd recommend pairing our **Minimalist Winter Coat** (Rs 8500) with the **Cashmere Sweater** (Rs 4200) for a clean, refined layered look. Add a **Silk Scarf** (Rs 1500) for an elevated accent." },
+    { role: 'assistant', text: "Perfect for the season! I suggest our **Merino Turtleneck** (Rs 3500) paired with straight-leg trousers. The monochromatic approach is very on-trend right now." },
+    { role: 'assistant', text: "A timeless pick! I recommend our **Linen Blazer** (Rs 6500) over a white tee. Add our **Leather Belt** (Rs 1800) to complete the look — effortless and polished." },
   ],
 };
 

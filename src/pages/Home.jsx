@@ -76,7 +76,7 @@ const Home = () => {
       <section style={{ width: '100%', background: '#0f172a', padding: '72px 24px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 48 }}>
           {[
-            ['🚀', 'Free Express Shipping', 'On all orders over $150.'],
+            ['🚀', 'Free Express Shipping', 'On all orders over Rs 5000.'],
             ['🤖', 'AI Personal Stylist', 'Get personalised outfit suggestions.'],
             ['↩️', 'Easy 30-Day Returns', 'Hassle-free returns, always.'],
             ['🌿', 'Sustainable Materials', 'Ethically sourced, planet-friendly.'],

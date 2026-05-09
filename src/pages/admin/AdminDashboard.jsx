@@ -61,7 +61,7 @@ export default function AdminDashboard() {
 
       {/* Stat Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20, marginBottom: 36 }}>
-        <StatCard title="Total Revenue" value={`$${s.totalRevenue?.toLocaleString()}`} icon={DollarSign} color="#22c55e" sub="+12.4% this month" />
+        <StatCard title="Total Revenue" value={`Rs ${s.totalRevenue?.toLocaleString()}`} icon={DollarSign} color="#22c55e" sub="+12.4% this month" />
         <StatCard title="Total Orders" value={s.totalOrders} icon={ShoppingCart} color="#3b82f6" sub="+3 today" />
         <StatCard title="Products" value={s.totalProducts} icon={Package} color="#8b5cf6" sub="8 categories" />
         <StatCard title="Customers" value={s.totalUsers} icon={Users} color="#f59e0b" sub="+2 this week" />
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
                   <td style={{ padding: '16px 24px', fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{order.customer}</td>
-                  <td style={{ padding: '16px 24px', fontSize: 14, color: '#0f172a', fontWeight: 700 }}>${order.total}</td>
+                  <td style={{ padding: '16px 24px', fontSize: 14, color: '#0f172a', fontWeight: 700 }}>Rs {order.total}</td>
                   <td style={{ padding: '16px 24px' }}>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 12px', borderRadius: 99, fontSize: 11, fontWeight: 700, background: STATUS_COLOR[order.status] + '20', color: STATUS_COLOR[order.status] }}>
                       <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'currentColor' }} />

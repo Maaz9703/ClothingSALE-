@@ -14,7 +14,7 @@ const CATEGORIES = [
   { label: 'Tops', desc: 'Blouses & shirts', icon: '👕' },
 ];
 
-const ANNOUNCEMENT = '✨  Free express shipping on orders over $150  ·  New Winter Collection now live  ✨';
+const ANNOUNCEMENT = '✨  Free express shipping on orders over Rs 5000  ·  New Winter Collection now live  ✨';
 
 export default function Navbar({ cartCount = 0, wishlistCount = 0, user, onLogout }) {
   const [mobileOpen, setMobileOpen] = useState(false);

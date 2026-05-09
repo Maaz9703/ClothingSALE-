@@ -149,7 +149,7 @@ const Catalog = ({ onCartAdd, onWishlist }) => {
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', marginBottom: 4 }}>{product.name}</h3>
                 <p style={{ fontSize: 13, color: '#64748b', marginBottom: 16, lineHeight: 1.5 }}>{product.description}</p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: 20, fontWeight: 800, color: '#0f172a' }}>${product.price}</span>
+                  <span style={{ fontSize: 20, fontWeight: 800, color: '#0f172a' }}>Rs {product.price}</span>
                   <button
                     onClick={() => addToCart(product)}
                     style={{
