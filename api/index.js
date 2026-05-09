@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/Product');
 const Order = require('./models/Order');
 const User = require('./models/User');
+const Category = require('./models/Category');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -35,6 +36,14 @@ const SEED_USERS = [
   { name: 'Admin User', email: 'admin@voguevault.com', role: 'admin', orders: 0, totalSpent: 0 },
 ];
 
+const SEED_CATEGORIES = [
+  { name: 'Outerwear', description: 'Coats, jackets & more', icon: '🧥' },
+  { name: 'Knitwear', description: 'Sweaters & knits', icon: '🧶' },
+  { name: 'Accessories', description: 'Scarves, belts & bags', icon: '👜' },
+  { name: 'Tops', description: 'Blouses & shirts', icon: '👕' },
+  { name: 'Summer Collection', description: 'Light and airy essentials', icon: '☀️' },
+];
+
 // ── Local Fallback Mode ────────────────────────────────────────────────────────
 let useLocalDB = false;
 let localProducts = SEED_PRODUCTS.map((p, i) => ({ ...p, _id: String(i + 1), createdAt: new Date() }));
@@ -63,6 +72,7 @@ async function seedIfEmpty() {
   await Product.insertMany(SEED_PRODUCTS);
   await Order.insertMany(SEED_ORDERS);
   await User.insertMany(SEED_USERS);
+  await Category.insertMany(SEED_CATEGORIES);
   console.log('🌱 Seed complete.');
 }
 
@@ -220,6 +230,35 @@ app.delete('/api/users/:id', async (req, res) => {
     await User.findByIdAndDelete(req.params.id);
     res.json({ message: 'User deleted' });
   } catch { res.status(500).json({ error: 'Failed to delete user' }); }
+});
+
+// ── Categories ──────────────────────────────────────────────────────────────────
+app.get('/api/categories', async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.json(categories);
+  } catch { res.status(500).json({ error: 'Failed to fetch categories' }); }
+});
+
+app.post('/api/categories', async (req, res) => {
+  try {
+    const category = await Category.create(req.body);
+    res.status(201).json(category);
+  } catch (err) { res.status(400).json({ error: err.message }); }
+});
+
+app.put('/api/categories/:id', async (req, res) => {
+  try {
+    const category = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(category);
+  } catch (err) { res.status(400).json({ error: err.message }); }
+});
+
+app.delete('/api/categories/:id', async (req, res) => {
+  try {
+    await Category.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Category deleted' });
+  } catch { res.status(500).json({ error: 'Failed to delete category' }); }
 });
 
 // ── Auth ───────────────────────────────────────────────────────────────────────

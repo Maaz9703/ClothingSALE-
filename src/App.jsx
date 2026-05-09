@@ -7,6 +7,7 @@ import Catalog from './pages/Catalog';
 import AIStylist from './pages/AIStylist';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import Profile from './pages/Profile';
 import AdminPanel from './pages/admin/AdminPanel';
 
 export default function App() {
@@ -62,6 +63,7 @@ function AppContent({ user, cartItems, wishlistCount, onLogin, onLogout, setCart
               <Route path="/stylist" element={<AIStylist />} />
               <Route path="/login" element={<Login onLogin={onLogin} />} />
               <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} user={user} />} />
+              <Route path="/profile" element={<Profile user={user} onLogout={onLogout} />} />
             </Routes>
           </main>
           <Footer />

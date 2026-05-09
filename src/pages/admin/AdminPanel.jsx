@@ -3,16 +3,18 @@ import { Link, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, Package, ShoppingCart, Users,
-  LogOut, ChevronRight, Menu, X, ExternalLink
+  LogOut, ChevronRight, Menu, X, ExternalLink, Tag
 } from 'lucide-react';
 import AdminDashboard from './AdminDashboard';
 import AdminProducts from './AdminProducts';
 import AdminOrders from './AdminOrders';
 import AdminUsers from './AdminUsers';
+import AdminCategories from './AdminCategories';
 
 const NAV = [
   { label: 'Dashboard', icon: LayoutDashboard, to: '/admin' },
   { label: 'Products', icon: Package, to: '/admin/products' },
+  { label: 'Categories', icon: Tag, to: '/admin/categories' },
   { label: 'Orders', icon: ShoppingCart, to: '/admin/orders' },
   { label: 'Users', icon: Users, to: '/admin/users' },
 ];
@@ -110,6 +112,7 @@ export default function AdminPanel() {
           <Routes>
             <Route index element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
+            <Route path="categories" element={<AdminCategories />} />
             <Route path="orders" element={<AdminOrders />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="*" element={<Navigate to="/admin" replace />} />

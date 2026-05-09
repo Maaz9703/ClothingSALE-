@@ -38,6 +38,12 @@ export const deleteOrder = (id) => apiFetch(`/orders/${id}`, { method: 'DELETE' 
 export const getUsers = () => apiFetch('/users');
 export const deleteUser = (id) => apiFetch(`/users/${id}`, { method: 'DELETE' });
 
+// Categories
+export const getCategories = () => apiFetch('/categories');
+export const createCategory = (data) => apiFetch('/categories', { method: 'POST', body: JSON.stringify(data) });
+export const updateCategory = (id, data) => apiFetch(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) });
+export const deleteCategory = (id) => apiFetch(`/categories/${id}`, { method: 'DELETE' });
+
 // Auth
 export const login = (email, password) =>
   apiFetch('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });

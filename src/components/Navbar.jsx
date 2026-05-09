@@ -245,6 +245,12 @@ export default function Navbar({ cartCount = 0, wishlistCount = 0, user, onLogou
                             <LayoutDashboard size={15} /> Admin Panel
                           </Link>
                         )}
+                        <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 18px', fontSize: 13, color: '#0f172a', textDecoration: 'none' }}
+                          onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
+                          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <User size={15} /> My Profile
+                        </Link>
                         <Link to="/cart" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 18px', fontSize: 13, color: '#0f172a', textDecoration: 'none' }}
                           onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
                           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}

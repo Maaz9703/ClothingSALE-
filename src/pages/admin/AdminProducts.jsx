@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Pencil, Trash2, X, Check, Package } from 'lucide-react';
-import { getProducts, createProduct, updateProduct, deleteProduct } from '../../services/api';
+import { getProducts, createProduct, updateProduct, deleteProduct, getCategories } from '../../services/api';
 
-const CATS = ['Outerwear', 'Knitwear', 'Accessories', 'Tops', 'Bottoms', 'Footwear'];
-
-
-
-const EMPTY = { name: '', price: '', category: 'Outerwear', imageUrl: '', description: '' };
+const EMPTY = { name: '', price: '', category: '', brand: '', imageUrl: '', description: '' };
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(null); // null | 'add' | product object
   const [form, setForm] = useState(EMPTY);
@@ -21,11 +18,18 @@ export default function AdminProducts() {
   const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(''), 2500); };
 
   useEffect(() => {
-    getProducts().then(setProducts).catch(() => setProducts([])).finally(() => setLoading(false));
+    Promise.all([getProducts(), getCategories()])
+      .then(([p, c]) => {
+        setProducts(p);
+        setCategories(c);
+        if (c.length > 0) setForm(prev => ({ ...prev, category: c[0].name }));
+      })
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
   }, []);
 
-  function openAdd() { setForm(EMPTY); setModal('add'); }
-  function openEdit(p) { setForm({ name: p.name, price: p.price, category: p.category, imageUrl: p.imageUrl || '', description: p.description || '' }); setModal(p); }
+  function openAdd() { setForm({ ...EMPTY, category: categories[0]?.name || '' }); setModal('add'); }
+  function openEdit(p) { setForm({ name: p.name, price: p.price, category: p.category, brand: p.brand || '', imageUrl: p.imageUrl || '', description: p.description || '' }); setModal(p); }
 
   async function save() {
     if (!form.name || !form.price) {
@@ -92,7 +96,10 @@ export default function AdminProducts() {
                 )}
               </div>
               <div style={{ padding: '16px 18px' }}>
-                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#94a3b8', textTransform: 'uppercase' }}>{p.category}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: '#94a3b8', textTransform: 'uppercase' }}>{p.category}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: '#3b82f6', background: '#eff6ff', padding: '2px 6px' }}>{p.brand}</span>
+                </div>
                 <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', marginTop: 4, marginBottom: 4 }}>{p.name}</h3>
                 <p style={{ fontSize: 13, color: '#64748b', marginBottom: 14, lineHeight: 1.4, WebkitLineClamp: 2, overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical' }}>{p.description}</p>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -128,7 +135,7 @@ export default function AdminProducts() {
                 <button onClick={() => setModal(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}><X size={20} /></button>
               </div>
               <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {[['Name', 'name', 'text'], ['Price (Rs)', 'price', 'number'], ['Image URL', 'imageUrl', 'url']].map(([label, key, type]) => (
+                {[['Name', 'name', 'text'], ['Brand', 'brand', 'text'], ['Price (Rs)', 'price', 'number'], ['Image URL', 'imageUrl', 'url']].map(([label, key, type]) => (
                   <div key={key}>
                     <label style={{ display: 'block', fontSize: 11, fontWeight: 700, color: '#0f172a', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{label}</label>
                     <input type={type} value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} style={inputStyle} />
@@ -137,7 +144,7 @@ export default function AdminProducts() {
                 <div>
                   <label style={{ display: 'block', fontSize: 11, fontWeight: 700, color: '#0f172a', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Category</label>
                   <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} style={{ ...inputStyle }}>
-                    {CATS.map(c => <option key={c}>{c}</option>)}
+                    {categories.map(c => <option key={c._id} value={c.name}>{c.name}</option>)}
                   </select>
                 </div>
                 <div>
