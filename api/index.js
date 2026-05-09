@@ -229,9 +229,12 @@ app.post('/api/auth/login', (req, res) => {
   res.json({ token: 'mock-jwt-token', user: { id: 1, name: isAdmin ? 'Admin User' : 'VogueVault Member', email, role: isAdmin ? 'admin' : 'user' } });
 });
 
-// ── Start ──────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`🚀 Server   → http://localhost:${PORT}`);
-  console.log(`📋 Health   → http://localhost:${PORT}/api/health`);
-  console.log(`🛠️  Admin    → http://localhost:${PORT}/api/admin/stats`);
-});
+// ── Start / Vercel Export ──────────────────────────────────────────────────────
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server   → http://localhost:${PORT}`);
+    console.log(`📋 Health   → http://localhost:${PORT}/api/health`);
+  });
+}
+
+module.exports = app;

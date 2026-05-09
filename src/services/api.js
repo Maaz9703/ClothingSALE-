@@ -1,5 +1,5 @@
 // Central API service — all backend calls go through here
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = '/api';
 
 async function apiFetch(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
