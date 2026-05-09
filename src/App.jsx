@@ -11,16 +11,21 @@ import Profile from './pages/Profile';
 import AdminPanel from './pages/admin/AdminPanel';
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('vogue_user');
+    return saved ? JSON.parse(saved) : null;
+  });
   const [cartItems, setCartItems] = useState([]);
   const [wishlistCount, setWishlistCount] = useState(0);
 
   function handleLogin(userData) {
     setUser(userData);
+    localStorage.setItem('vogue_user', JSON.stringify(userData));
   }
 
   function handleLogout() {
     setUser(null);
+    localStorage.removeItem('vogue_user');
   }
 
   // Pages that should NOT show the main navbar/footer

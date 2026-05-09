@@ -49,6 +49,7 @@ let useLocalDB = false;
 let localProducts = SEED_PRODUCTS.map((p, i) => ({ ...p, _id: String(i + 1), createdAt: new Date() }));
 let localOrders = SEED_ORDERS.map((o, i) => ({ ...o, _id: String(i + 1), createdAt: new Date() }));
 let localUsers = SEED_USERS.map((u, i) => ({ ...u, _id: String(i + 1), createdAt: new Date() }));
+let localCategories = SEED_CATEGORIES.map((c, i) => ({ ...c, _id: String(i + 1), createdAt: new Date() }));
 
 
 // ── MongoDB ────────────────────────────────────────────────────────────────────
@@ -235,6 +236,7 @@ app.delete('/api/users/:id', async (req, res) => {
 // ── Categories ──────────────────────────────────────────────────────────────────
 app.get('/api/categories', async (req, res) => {
   try {
+    if (useLocalDB) return res.json(localCategories);
     const categories = await Category.find();
     res.json(categories);
   } catch { res.status(500).json({ error: 'Failed to fetch categories' }); }
@@ -242,6 +244,11 @@ app.get('/api/categories', async (req, res) => {
 
 app.post('/api/categories', async (req, res) => {
   try {
+    if (useLocalDB) {
+      const c = { ...req.body, _id: Date.now().toString(), createdAt: new Date() };
+      localCategories.push(c);
+      return res.status(201).json(c);
+    }
     const category = await Category.create(req.body);
     res.status(201).json(category);
   } catch (err) { res.status(400).json({ error: err.message }); }
@@ -249,6 +256,12 @@ app.post('/api/categories', async (req, res) => {
 
 app.put('/api/categories/:id', async (req, res) => {
   try {
+    if (useLocalDB) {
+      const idx = localCategories.findIndex(c => c._id === req.params.id);
+      if (idx === -1) return res.status(404).json({ error: 'Not found' });
+      localCategories[idx] = { ...localCategories[idx], ...req.body };
+      return res.json(localCategories[idx]);
+    }
     const category = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(category);
   } catch (err) { res.status(400).json({ error: err.message }); }
@@ -256,6 +269,10 @@ app.put('/api/categories/:id', async (req, res) => {
 
 app.delete('/api/categories/:id', async (req, res) => {
   try {
+    if (useLocalDB) {
+      localCategories = localCategories.filter(c => c._id !== req.params.id);
+      return res.json({ message: 'Category deleted' });
+    }
     await Category.findByIdAndDelete(req.params.id);
     res.json({ message: 'Category deleted' });
   } catch { res.status(500).json({ error: 'Failed to delete category' }); }
