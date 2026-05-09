@@ -44,7 +44,8 @@ let localUsers = SEED_USERS.map((u, i) => ({ ...u, _id: String(i + 1), createdAt
 
 // ── MongoDB ────────────────────────────────────────────────────────────────────
 // Attempt connection but fail fast (2 seconds timeout) to avoid UI hanging
-mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 2000 })
+const URI = process.env.MONGO_URI || 'mongodb+srv://anam:anam@cluster0.m5bqm8i.mongodb.net/voguevault?retryWrites=true&w=majority';
+mongoose.connect(URI, { serverSelectionTimeoutMS: 2000 })
   .then(async () => {
     console.log('✅ MongoDB Connected — cluster0.m5bqm8i.mongodb.net');
     await seedIfEmpty(); 
